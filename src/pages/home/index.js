@@ -2,11 +2,10 @@ import React from 'react'
 import LogoImg from '@/assets/logo.png'
 import { Link } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
-import { Input, Divider, Icon, Select } from 'antd';
+import { Input, Divider, Icon,  Menu, Dropdown } from 'antd';
 import errorImg from '@/assets/touxiang.png'
 import './style.less'
 const { Search } = Input
-const { Option } = Select
 export default class extends React.PureComponent {
   imgError = e => {
     e.target.src = errorImg
@@ -15,7 +14,17 @@ export default class extends React.PureComponent {
     console.log(`selected ${value}`);
   }
   render () {
-   
+    const menu = (
+      <Menu>
+        <Menu.Item key="0">
+          <Link>管理账户</Link>
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="1">
+          <Link to="/users/login">退出登录</Link>
+        </Menu.Item>
+      </Menu>
+    )
     return (
       <div className="pages_home">
         <div className="pages_home_head">
@@ -44,18 +53,16 @@ export default class extends React.PureComponent {
           />
           <div className="pages_home_users">
             <img src="" alt="" onError={this.imgError}/>
-            <Select 
-              defaultValue="lucy"
-              style={{ width: 120 }} 
-              onChange={this.handleChange}
-            >
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="disabled" disabled>
-                Disabled
-              </Option>
-              <Option value="Yiminghe">yiminghe</Option>
-            </Select>
+            <div className="pages_home_userInfo">
+              <Dropdown overlay={menu} trigger={['click']}>
+                <a className="ant-dropdown-link" href="#">
+                lep123456789 <Icon type="down" />
+                </a>
+              </Dropdown>
+              <div>
+                <Icon type="smile" /> Vip
+              </div>
+            </div>
           </div>
         </div>
         <div className="pages_home_body">
