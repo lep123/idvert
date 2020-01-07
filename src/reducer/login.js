@@ -5,5 +5,8 @@ const defaultState = {
     userInfo:'',
 }
 export default handleActions({
-    LOGIN: (state, action) => ({ ...state, userInfo: action.payload.result })
+    LOGIN: (state, action) =>{ 
+       
+        return {...state, userInfo: action.payload.result }
+    }
 }, defaultState)

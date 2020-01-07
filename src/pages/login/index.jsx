@@ -56,7 +56,7 @@ class extends React.Component {
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit" style={{width:'100%'}}>
-                Log in
+                登录
               </Button>
               
             </Form.Item>
