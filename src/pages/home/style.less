@@ -39,6 +39,15 @@
       .pages_home_userInfo{
           text-align: left;
           color: white;
+          .pages_home_username{
+            width: 120px;
+            display: inline-block;
+            color: white;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+          }
       }
     }
     .pages_home_head_ic{
@@ -49,5 +58,6 @@
   }
   .pages_home_body{
     flex: 1;
+    overflow: auto;
   }
 }

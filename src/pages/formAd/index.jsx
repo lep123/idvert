@@ -1,9 +1,15 @@
 import React from 'react'
+import Forms from '@@/Forms'
 import './style.less'
 export default class extends React.PureComponent {
   render () {
     return (
-      <div>formA</div>
+      <div className="pages_formNative">
+      <div className="pages_formNatvie_form">
+        <Forms formAd />
+      </div>
+     
+    </div>
     )
   }
 }

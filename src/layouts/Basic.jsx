@@ -4,7 +4,7 @@ import WithRouter from '@@/WithRouter'
 
 export default class extends React.PureComponent {
 	render() {
-		return (
+		return (  
 			<div className='app'>
 					{/* 全局路由守卫 */}
 					<WithRouter routes={this.props.route.routes} />
