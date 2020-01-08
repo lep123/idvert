@@ -1,9 +1,12 @@
 import React from 'react'
 import './style.less'
+import Top from './top'
 export default class extends React.PureComponent {
   render () {
     return (
-      <div>facebook</div>
+      <div className="pages-box">
+          <Top/>
+      </div>
     )
   }
 }
