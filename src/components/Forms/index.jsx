@@ -106,6 +106,7 @@ class extends React.PureComponent {
                 name="file" 
                 action={Api.upload} 
                 listType="picture"
+                data={{type: 'upload'}}
               >
                 <Button>
                   <Icon type="upload" /> Click to upload
@@ -157,7 +158,6 @@ class extends React.PureComponent {
             <Button type="primary" htmlType="submit" className="login-form-button">
               添加
             </Button>
-          
           </Form.Item>
         </Form>
       </div>
