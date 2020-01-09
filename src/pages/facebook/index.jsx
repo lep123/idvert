@@ -3,7 +3,9 @@ import './style.less'
 export default class extends React.PureComponent {
   render () {
     return (
-      <div>facebook</div>
+      <div className="pages_facebook">
+        
+      </div>
     )
   }
 }

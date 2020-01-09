@@ -60,7 +60,7 @@ export default class extends React.PureComponent {
                 </a>
               </Dropdown>
               <div>
-                <Icon type="smile" /> Vip
+               <Icon type="sketch" /> Vip
               </div>
             </div>
           </div>
