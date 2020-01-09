@@ -1,7 +1,7 @@
 import { requestPost } from '@/utils/request'
 import { createActions } from 'redux-actions'
-
-export const login = createActions({
-    // CESHI: options => request(services.listWithPage),
-    USER_LOGIN: options => options,
-  })
+import Api from '@/services/api'
+export const getUser = createActions({
+    LOGIN: options => requestPost(Api.login, options),
+})
+ 

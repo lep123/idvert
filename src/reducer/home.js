@@ -4,8 +4,10 @@ import { handleActions } from 'redux-actions'
 const defaultState = {
   Data: [],
 }
-
 export default handleActions({
-  CESHI: (state, action) => ({ ...state, Data: action.payload })
+  SET_DATA: (state, action) => {
+    return { ...state,Data:action.payload};
+  }
 }, defaultState)
+
 

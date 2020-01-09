@@ -1,3 +1,4 @@
+import React from 'react'
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import promise from 'redux-promise'
 import thunk from 'redux-thunk'
@@ -24,7 +25,7 @@ const myPersistReducer = combineReducers({
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(
+const store = window.store = createStore(
 	myPersistReducer,
 	composeEnhancers(applyMiddleware(promise, thunk))
 )

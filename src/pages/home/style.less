@@ -1,0 +1,63 @@
+.pages_home{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .pages_home_head{
+    width: 100%;
+    height: 60px;
+    background: rgba(56, 63, 77);
+    display: flex;
+    align-items: center;
+    padding:0 10px;
+    .pages_home_list{
+      margin-left: 40px;
+      margin-right: 20px;
+      width: 300px;
+      display: flex;
+      a{
+        flex: 1;
+        color: white;
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+    .pages_home_serach{
+      margin-right: 80px;
+    }
+    .pages_home_users{
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      img{
+        margin-right: 20px;
+      }
+      .ant-dropdown-link{
+        color: white;
+      }
+      .pages_home_userInfo{
+          text-align: left;
+          color: white;
+          .pages_home_username{
+            width: 120px;
+            display: inline-block;
+            color: white;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+          }
+      }
+    }
+    .pages_home_head_ic{
+      color: white;
+      margin: 0 15px;
+      font-size: 16px;
+    }
+  }
+  .pages_home_body{
+    flex: 1;
+    overflow: auto;
+  }
+}
