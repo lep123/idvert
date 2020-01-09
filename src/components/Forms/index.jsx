@@ -8,10 +8,8 @@ import {
   DatePicker, 
   Select, 
   AutoComplete,
-  message
 } from 'antd'
 import _ from 'loadsh'
-import { requestPost } from '@/utils/request'
 import Api from '@/services/api'
 import './style.less'
 const { TextArea } = Input
@@ -43,22 +41,15 @@ class extends React.PureComponent {
   }
 
   handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
+    const { getFormData } = this.props
     this.props.form.validateFields((err, values) => {
       if (!err) {
         let { upload, datePicker, ...options } = values
-        const imgurl = _.get(values, 'upload[0].response.url', '')
+        const imgurl = _.get(values, 'result', '')
         const date = values['datePicker'].format('YYYY.MM.DD')
-        requestPost(Api.setData, {
-          info: { ...options, imgurl, date }
-        })
-          .then(res => {
-            if(res.code == 200) {
-              message.success('添加成功')
-            } else {
-              message.warning('添加失败')
-            }
-          })
+        getFormData({ ...options, imgurl, date })
+       
       }
     })
   }
@@ -112,8 +103,8 @@ class extends React.PureComponent {
               getValueFromEvent: this.normFile,
             })(
               <Upload 
-                name="logo" 
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76" 
+                name="file" 
+                action={Api.upload} 
                 listType="picture"
               >
                 <Button>
