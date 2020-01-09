@@ -1,6 +1,6 @@
 import React from 'react'
 import LogoImg from '@/assets/logo.png'
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import { Input, Divider, Icon,  Menu, Dropdown } from 'antd';
 import errorImg from '@/assets/touxiang.png'
@@ -30,9 +30,27 @@ export default class extends React.PureComponent {
         <div className="pages_home_head">
           <img src={LogoImg} alt=""/>
           <div className="pages_home_list">
-            <Link to="/formNative">Form Native</Link>
-            <Link to="/formAd">Form Ad</Link>
-            <Link to="/">Ad Samples</Link>
+            <NavLink  
+              activeClassName="activeLink" 
+              to="/formNative"
+              exact
+            >
+              Form Native
+            </NavLink>
+            <NavLink  
+              activeClassName="activeLink"  
+              to="/formAd"
+              exact
+            >
+              Form Ad
+            </NavLink>
+            <NavLink  
+              activeClassName="activeLink"  
+              to="/"
+              exact
+            >
+              Ad Samples
+            </NavLink>
           </div>
           <div className="pages_home_serach">
             <Search
