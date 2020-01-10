@@ -1,8 +1,9 @@
 import React from 'react'
 import Loadable from 'react-loadable';
- 
-const Loading = () => <div> 加载中... </div>  
-export default (loader, loading = Loading) => {	
+import Loading from '@@/Loading'
+
+const Loadings = () => <Loading loading />  
+export default (loader, loading = Loadings) => {	
   return Loadable({
     loader: loader,
     loading,

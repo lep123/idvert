@@ -1,7 +1,7 @@
 import axios from 'axios'
 import _ from 'loadsh'
 import qs from 'qs'
-
+import { home } from '@/actions/home'
 let cancelToken = axios.CancelToken
 const cancel = []
 const removePending = config => {
@@ -22,6 +22,7 @@ axios.interceptors.request.use(config => {
 					u: config.url,
 			})
 	})
+	window.store.dispatch(home.loading(true))
 	return config
 }, error => {
 	return Promise.reject(error)
@@ -29,6 +30,8 @@ axios.interceptors.request.use(config => {
 
 //添加响应拦截器
 axios.interceptors.response.use(response => {
+	window.store.dispatch(home.loading(false))
+	
 	return response
 }, error => {
 	switch (_.get(error, 'response.status', '')) {
@@ -40,6 +43,7 @@ axios.interceptors.response.use(response => {
 		default:
 			break
 	}
+	
 	return Promise.reject(error)
 })
 
