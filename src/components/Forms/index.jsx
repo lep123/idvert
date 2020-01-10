@@ -46,7 +46,7 @@ class extends React.PureComponent {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         let { upload, datePicker, ...options } = values
-        const imgurl = _.get(values, 'result', '')
+        const imgurl = _.get(values, 'upload[0].response.result', '')
         const date = values['datePicker'].format('YYYY.MM.DD')
         getFormData({ ...options, imgurl, date })
        
