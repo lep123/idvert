@@ -18,6 +18,7 @@ class extends React.Component {
           .then( res => {
             if(res.payload.code == 200) {
               message.success('登录成功')
+              localStorage.token = res.payload.result
               this.props.history.push('/')
             } else {
               message.warning('登录失败')
