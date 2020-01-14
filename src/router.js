@@ -13,6 +13,7 @@ const FormAd = loader(() => import('@/pages/formAd'))
 const List = loader(() => import('@/pages/list'))
 const FaceBook = loader(() => import('@/pages/facebook'))
 const Native = loader(() => import('@/pages/native'))
+const Details = loader(() => import('@/pages/details'))
 const routes = [
 	{
 		component: Users,
@@ -32,6 +33,10 @@ const routes = [
 		component: Basic,
 		path: '/',
 		routes: [
+			{
+				component: Details,
+				path:'/details',
+			},
 			{
 				component: Home,
 				path: '/',

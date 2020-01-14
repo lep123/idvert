@@ -2,32 +2,11 @@ import React from 'react'
 import { Select, DatePicker, Checkbox } from 'antd';
 import moment from 'moment';
 import './style.less'
+import Waterfalls from '@@/Waterfalls'
 
-function range(start, end) {
-  const result = [];
-  for (let i = start; i < end; i++) {
-    result.push(i);
-  }
-  return result;
-}
-//asd
 function disabledDate(current) {
-  // Can not select days before today and today
+  console.log(moment().endOf('day'))
   return current && current > moment().endOf('day');
-}
-function disabledRangeTime(_, type) {
-  if (type === 'start') {
-    return {
-      disabledHours: () => range(0, 60).splice(4, 20),
-      disabledMinutes: () => range(30, 60),
-      disabledSeconds: () => [55, 56],
-    };
-  }
-  return {
-    disabledHours: () => range(0, 60).splice(20, 4),
-    disabledMinutes: () => range(0, 31),
-    disabledSeconds: () => [55, 56],
-  };
 }
 function onChange(e) {
   console.log(`checked = ${e.target.checked}`);
@@ -36,37 +15,76 @@ export default class extends React.PureComponent {
   state = {
     children: {},
     mode: 'time',
-    clear: [],
-    bool:false
+    clear: {},
+    bool: false,
+    start: [],
+    end: []
   }
   handleChange = (e, s) => {
-    console.log(e)
     this.state.clear[`${s}`] = e
     this.setState({
-      bool:!this.state.bool
+      bool: !this.state.bool
     })
   }
   handleOpenChange = open => {
     if (open) {
       this.setState({ mode: 'time' });
     }
-  };
-
+  }
   handlePanelChange = (value, mode) => {
     this.setState({ mode });
   };
   onChange = (dates, dateStrings) => {
+    this.setState({
+      start: dateStrings,
+      bool: this.state.bool
+    })
     console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
   }
+  onChanges = (dates, dateStrings) => {
+    this.setState({
+      end: dateStrings,
+      bool: this.state.bool
+    })
+    console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
+  }
+  forin = (e) => {
+    let info = ``
+    for (let x in e) {
+      console.log(e[x],'----',x)
+        for(let i in e[x]){
+          info += `
+              <p class="nativename">
+                ${x}:
+                <span class="nativenameinfo">${e[x][i]}
+                  <button class="error" onclick={this.error1()}>×</button>
+                </span>
+              </p>`
+        }
+    }
+    return info
+  }
+  error1 = () => {
+    console.log("点击")
+  }
+  clear = () => {
+    this.setState({
+      clear: {},
+      bool: !this.state.bool,
+      start: [],
+      end: []
+    })
+  }
   render() {
-    console.log(this.state.clear)
+    console.log(this.props)
+    console.log(this.state)
     const { RangePicker } = DatePicker;
     const { Option } = Select;
     this.state.children = []
     for (let i = 10; i < 36; i++) {
       this.state.children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
     }
-
+    const { start, end, clear } = this.state
     return (
       <div className="native">
         <div className="nativeHead">
@@ -78,6 +96,7 @@ export default class extends React.PureComponent {
               <Select
                 className="nativeselect position"
                 mode="multiple"
+                allowClear={true}
                 placeholder="Search Position"
                 defaultValue={[]}
                 onChange={e => this.handleChange(e, 'Search Position')}
@@ -120,15 +139,13 @@ export default class extends React.PureComponent {
                 mode="multiple"
                 placeholder="Ad"
                 defaultValue={[]}
-                onChange={this.handleChange}
-                disabledTime={disabledRangeTime}
+                onChange={e => this.handleChange(e, 'Ad')}
                 maxTagCount={1}
               >
                 {this.state.children}
               </Select>
               <RangePicker
                 disabledDate={disabledDate}
-                disabledTime={disabledRangeTime}
                 onChange={this.onChange}
                 showTime={{
                   hideDisabledOptions: true,
@@ -138,8 +155,7 @@ export default class extends React.PureComponent {
               />
               <RangePicker
                 disabledDate={disabledDate}
-                disabledTime={disabledRangeTime}
-                onChange={this.onChange}
+                onChange={this.onChanges}
                 showTime={{
                   hideDisabledOptions: true,
                 }}
@@ -201,21 +217,24 @@ export default class extends React.PureComponent {
           </div>
           <hr></hr>
           {
-            console.log(111)
-          }
-          {
-            this.state.children.lenght > 0 ?
+            clear['Search Position'] && clear['Search Position'].length > 0 || clear['Geo'] && clear['Geo'].length || clear['Language'] && clear['Language'].length > 0
+              || clear['Device Type'] && clear['Device Type'].length > 0 || clear['Height'] && clear['Height'].length > 0 || clear['Width'] && clear['Width'].length > 0
+              || clear['Affiliate Network'] && clear['Affiliate Network'].length > 0 || clear['Vertical'] && clear['Vertical'].length > 0
+              || clear['Offer Name'] && clear['Offer Name'].length > 0 || clear['Ad'] && clear['Ad'].length > 0
+              ?
               <div className="nativeSearched">
 
                 <div className="nativeSearchedLeft">
                   Searched:
-              </div>
+                </div>
                 <div className="nativeSearchedRight">
-                  <span className="clear">clear all</span>
+                  <div dangerouslySetInnerHTML = {{__html:this.forin(clear)}} ></div>
+                  <span className="clear" onClick={this.clear}>clear all</span>
                 </div>
               </div> : null
           }
         </div>
+        <Waterfalls className="waterfalls" />
       </div>
     )
   }
