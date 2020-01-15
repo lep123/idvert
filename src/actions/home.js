@@ -6,5 +6,6 @@ export const home = createActions({
     // CESHI: options => request(services.listWithPage),
     SET_DATA: options => options,
     LOADING: options => options,
+    LOCAL_DATA: options => requestGet('select.json'),
   })
 

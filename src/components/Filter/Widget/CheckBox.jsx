@@ -1,5 +1,6 @@
 import React from 'react'
 import cs from 'classnames'
+import _ from 'loadsh'
 import '../style.less'
 export default class extends React.PureComponent {
   constructor (props) {
@@ -18,7 +19,7 @@ export default class extends React.PureComponent {
     }
   }
   onClick = (options) => {
-    const { onClick, disabled } = this.props
+    const { onClick, disabled, onChange } = this.props
     const { data } = this.state
     if(disabled){
       return false
@@ -29,11 +30,17 @@ export default class extends React.PureComponent {
         } 
         return v
       })
-  
+       const arrs =  _.compact(data.map(val => val.active ? val.value : ''))
       this.setState({
         data: arr
       })
       onClick && onClick(options)
+     
+      onChange && onChange(arrs)
+    
+   
+   
+   
     }
   }
   render () {

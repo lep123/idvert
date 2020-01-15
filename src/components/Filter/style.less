@@ -1,7 +1,8 @@
 .comm_filter_radio{
   height: 42px;
   background: white;
-  line-height: 42px;
+  display: flex;
+  align-items: center;
   color: #666;
   span{
     display: inline-block;
@@ -20,7 +21,8 @@
 .comm_filter_checkbox{
   height: 42px;
   background: white;
-  line-height: 42px;
+  display: flex;
+  align-items: center;
   color: #666;
   span{
     display: inline-block;
@@ -36,7 +38,44 @@
   
 }
 .comm_widget_tooltip{
+  padding: 0 10px;
   background: white;
   height: 42px;
+  line-height: 42px;
+  span{
+    color: red !important;
+  }
+}
 
+
+.comm_Formpanel{
+  margin-top: 30px;
+  width: 100%;
+  background: white;
+  .comm_row{
+    display: flex;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eee;
+    
+    .comm_list{
+      flex: 1;
+      display: flex;
+      align-items: center;
+      .comm_label{
+     
+       color: #999;
+      }
+      .comm_list_connect{
+       padding-left: 10px;
+       display: flex;
+       flex-wrap: wrap;
+      }
+    }
+  }
+  
+}
+
+.comm_filter{
+  width: 100%;
 }

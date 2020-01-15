@@ -1,19 +1,25 @@
 import React from 'react'
 import { Select } from 'antd'
+import _ from 'loadsh'
 const { Option } = Select
 
 export default class extends React.PureComponent {
-  
+  onChange = (items) => {
+    const { onChange, multiple } = this.props
+    const arrs = []
+    multiple ?  _.compact(items.map(val => val.key )) : arrs.push(items.key)
+    onChange && onChange(arrs)
+  }
   render() {
-    const { option, placeholder, handleChange, multiple, disabled} = this.props
-    const otherProps = multiple ? { mode: 'multiple', maxTagCount: 1} : {}
+    const { option, placeholder, multiple, disabled} = this.props
+    const otherProps = multiple ? { mode: 'multiple', maxTagCount: 1, maxTagTextLength: 5} : {}
     return (
       <Select
         allowClear
         labelInValue
-        style={{ width: '100%' }}
+        style={{ width: '200px',margin: '5px' }}
         placeholder={placeholder}
-        onChange={handleChange}
+        onChange={this.onChange}
         defaultActiveFirstOption={false}
         showArrow={true}
         disabled={disabled}
@@ -22,7 +28,7 @@ export default class extends React.PureComponent {
         {
           option && option.map(v => (
               <Option value={v.value}label="China" key={v.key}>
-                {v.value}
+                {v.key}
               </Option>
             ))
         }

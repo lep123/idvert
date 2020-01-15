@@ -18,7 +18,7 @@ export default class extends React.PureComponent {
     }
   }
   onClick = (options) => {
-    const { onClick, disabled } = this.props
+    const { onClick, disabled, onChange } = this.props
     const { data } = this.state
     if(disabled){
       return false
@@ -36,11 +36,11 @@ export default class extends React.PureComponent {
         data: arr
       })
       onClick && onClick(options)
+      onChange && onChange(options.value)
     }
   }
   render () {
     const { disabled, data } = this.state
-   
     return (
       <div className="comm_filter_radio">
         {

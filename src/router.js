@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import loader from '@/utils/loader'   // 路由懒加载
@@ -25,6 +25,10 @@ const routes = [
 			{
 				component: Reg,
 				path: '/users/reg',
+			},
+			{
+				component: Login,
+				path: '/users',
 			}
 		]
 	},
@@ -69,7 +73,7 @@ export default class extends React.PureComponent {
 	render () {
 		return(
 			<BrowserRouter >
-					{renderRoutes(routes)}
+				{renderRoutes(routes)}
 			</BrowserRouter>
 		)
 	}

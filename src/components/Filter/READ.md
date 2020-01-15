@@ -45,6 +45,17 @@ function handelClick (record) {
       }
     ]
 
+      const data = [
+      {
+        "key": 0,
+        "label": 'aaa'
+      },
+      {
+        "key": 1,
+        "label": 'bbb'
+      }
+    ]
+
 <Collection 
   iconNo={<Icon type="star" theme="filled" />}
   iconOff={<Icon type="star"  />}
