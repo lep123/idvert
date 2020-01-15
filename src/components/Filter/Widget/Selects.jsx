@@ -6,8 +6,8 @@ const { Option } = Select
 export default class extends React.PureComponent {
   onChange = (items) => {
     const { onChange, multiple } = this.props
-    const arrs = []
-    multiple ?  _.compact(items.map(val => val.key )) : arrs.push(items.key)
+    let arrs = []
+    multiple ? arrs = _.compact(items.map(val => val.key )) : arrs.push(items.key)
     onChange && onChange(arrs)
   }
   render() {

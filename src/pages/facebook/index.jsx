@@ -1,14 +1,28 @@
 import React from 'react'
 import './style.less'
 import FormPanel from '@@/Filter/FormPanel'
-export default class extends React.PureComponent {
-  handelClcik = (v) => {
-    console.log(v,111)
+import Filter from '@@/Filter'
+import { home } from '@/actions/home' 
+import { connect } from 'react-redux'
+export default 
+@connect( state => ({
+  data: state.index.localData
+}), {
+  getLocalData: home.localData
+})
+class extends React.PureComponent {
+  componentDidMount () {
+    this.props.getLocalData()
+  }
+
+  onChange = (options) => {
+    console.log(options)
   }
   render () {
+    const { data } = this.props
     return (
       <div className="pages_facebook">
-          <FormPanel />
+          <Filter data={data} onChange={this.onChange}/>
       </div>
     )
   }

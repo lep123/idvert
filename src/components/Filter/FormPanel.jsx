@@ -4,17 +4,9 @@ import Radio from './Widget/Radio'
 import CheckBox from './Widget/CheckBox'
 import Selects from './Widget/Selects'
 import DatePicker from './Widget/DatePicker'
-import Input from './Widget/Input'
-import { connect } from 'react-redux'
-import { home } from '@/actions/home' 
 import { Form } from 'antd'
 
 export default
-@connect( state => ({
-  data: state.index.localData
-}), {
-  getLocalData: home.localData
-})
 @Form.create({
   onValuesChange (props, changedValues, allValues) {
 
@@ -22,10 +14,6 @@ export default
   }
 })
 class extends React.PureComponent {
-  componentDidMount () {
-    this.props.getLocalData()
-  }
-
   render () {
     const { getFieldDecorator } = this.props.form
     const { data } = this.props
@@ -54,13 +42,11 @@ class extends React.PureComponent {
                   <span className="comm_label">{val.label} :</span> 
                   <div className="comm_list_connect">
                    {
-                  val.options && val.options.map(item => {
-                      return <React.Fragment key={item.key}>
-                        { partType[item.type](item)}
-                      </React.Fragment>
-
+                    val.options && val.options.map(item => {
+                        return <React.Fragment key={item.key}>
+                          { partType[item.type](item)}
+                        </React.Fragment>
                     })
-                    
                    }
                   </div>
                 </div>
@@ -69,25 +55,6 @@ class extends React.PureComponent {
           </div>
          ))
        }
-
-      
-{/*        
-       <div className="comm_row">
-        <div className="comm_list">
-          <span className="comm_label">Serch Position :</span> 
-          <div className="comm_list_connect">
-          {getFieldDecorator('password')(
-              <Selects option={option} multiple/>,
-          )}
-            <Selects option={option} multiple/>
-            <Selects option={option} multiple/>
-            <Selects option={option} multiple/>
-            <Selects option={option} multiple/>
-            <Selects option={option} multiple/>
-            <Selects option={option} multiple/>
-          </div>
-        </div>
-       </div> */}
      </div>
     )
   }

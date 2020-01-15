@@ -11,11 +11,12 @@ export default class extends React.PureComponent {
     onCloseAll && onCloseAll()
   }
   render () {
-    const { data } = this.props
+    const { checkedData } = this.props
     return (
       <div className="comm_widget_tooltip">
+      <span className="comm_tooltip_list">Serached:</span>
       {
-        data && data.map(v => (
+        checkedData && checkedData.map(v => (
             <Tag
               closable
               onClose={() => this.onClose(v)}
@@ -25,9 +26,12 @@ export default class extends React.PureComponent {
             </Tag>
           ))
       }
-      <span onClick={this.onCloseAll} >
-        clear all
-      </span>
+      {
+        checkedData &&  
+        <span onClick={this.onCloseAll} >
+          clear all
+        </span>
+      }
       </div>
     )
   }
